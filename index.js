@@ -30,7 +30,12 @@ app.get('/', (req, res) => {
 
 
 
-
+app.get('/index', (req, res) => {
+    if (!req.session.isAuthenticated) {
+        return res.redirect('/login'); // Redirect to login if not authenticated
+    }
+    res.render('index', { username: req.session.username }); // Passing username to index.ejs
+});
 
 
 // Route for handling registration form submission
@@ -93,7 +98,7 @@ app.post('/login', (req, res) => {
         req.session.username = user.username;
 
         // Redirect to the quiz page
-        return res.redirect('/quiz');
+        return res.redirect('index');
     });
 });
 
@@ -132,7 +137,7 @@ app.post('/submit-quiz', isAuthenticated, (req, res) => {
                 if (err) {
                     return res.status(500).send('Error saving quiz result');
                 }
-                res.redirect('/'); // Redirect to home page after saving the quiz result
+                res.redirect('/index'); // Redirect to home page after saving the quiz result
             }
         );
     });
