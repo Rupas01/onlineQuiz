@@ -5,31 +5,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <style>
+        body {
+            background-color: #dedede;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        h3 {
+            color: #555;
+        }
+
+        form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            text-align: left;
+        }
+
+        input {
+            width: 93%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .toggle-button {
+            background-color: #007bff;
+            margin: 10px 0px;
+        }
+
+        .toggle-button:hover {
+            background-color: #0056b3;
+        }
+
+        .visible {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Welcome to the Online Quiz Game</h2>
+    <div class="container">
+        <h2>Online Quiz Game</h2>
 
-    <h3>Register</h3>
-    <form action="/register" method="post">
-        <label for="reg-username">Username:</label><br>
-        <input type="text" id="reg-username" name="username" required><br>
-        <label for="reg-password">Password:</label><br>
-        <input type="password" id="reg-password" name="password" required><br>
-        <label for="reg-confirm-password">Confirm password:</label><br>
-        <input type="password" id="reg-confirm-password" name="confirmPassword" required><br>
-        <button type="submit">Register</button>
-    </form>
+        
+        <form id="login-form" class="visible" action="/login" method="post">
+            <h3>Login</h3>
+            <label for="login-username">Username:</label>
+            <input type="text" id="login-username" name="username" required>
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        
+        <form id="register-form" action="/register" method="post">
+            <h3>Register</h3>
+            <label for="reg-username">Username:</label>
+            <input type="text" id="reg-username" name="username" required>
+            <label for="reg-password">Password:</label>
+            <input type="password" id="reg-password" name="password" required>
+            <label for="reg-confirm-password">Confirm password:</label>
+            <input type="password" id="reg-confirm-password" name="confirmPassword" required>
+            <button type="submit">Register</button>
+        </form>
+        <button class="toggle-button" onclick="toggleForm()">Register</button>
+    </div>
 
+    <script>
+        function toggleForm() {
+            const registerForm = document.getElementById('register-form');
+            const loginForm = document.getElementById('login-form');
+            const toggleButton = document.querySelector('.toggle-button');
 
-    <h3>Login</h3>
-    <form action="/login" method="post">
-        <label for="login-username">Username:</label><br>
-        <input type="text" id="login-username" name="username" required><br>
-        <label for="login-password">Password:</label><br>
-        <input type="password" id="login-password" name="password" required><br>
-        <button type="submit">Login</button>
-    </form>
+            if (loginForm.classList.contains('visible')) {
+                loginForm.classList.remove('visible');
+                registerForm.classList.add('visible');
+                toggleButton.textContent = 'Login';
+            } else {
+                registerForm.classList.remove('visible');
+                loginForm.classList.add('visible');
+                toggleButton.textContent = 'Register';
+            }
+        }
+    </script>
 </body>
 
 </html>

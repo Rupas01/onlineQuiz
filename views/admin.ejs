@@ -5,78 +5,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        h3 {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body>
     <h2>Admin Panel</h2>
 
-    <h3>Delete Question</h3>
-    <form action="/admin/delete" method="post">
-        <label for="delete-question-id">Question ID:</label><br>
-        <input type="text" id="delete-question-id" name="questionId" required><br>
-        <button type="submit">Delete</button>
-    </form>
+    <div class="container">
+        <h3>Delete Question</h3>
+        <form action="/admin/delete" method="post">
+            <label for="delete-question-id">Question ID:</label>
+            <input type="text" id="delete-question-id" name="questionId" required>
+            <button type="submit">Delete</button>
+        </form>
+    </div>
 
-    <h3>Edit Question</h3>
-    <h3>Edit Question</h3>
-    <form action="/admin/edit" method="post">
-        <label for="edit-question-id">Question ID:</label><br>
-        <input type="text" id="edit-question-id" name="questionId" required><br>
+    <div class="container">
+        <h3>Edit Question</h3>
+        <form action="/admin/edit" method="post">
+            <label for="edit-question-id">Question ID:</label>
+            <input type="text" id="edit-question-id" name="questionId" required>
 
-        <label for="edit-question-text">New Question Text:</label><br>
-        <textarea id="edit-question-text" name="questionText" required></textarea><br>
+            <label for="edit-question-text">New Question Text:</label>
+            <textarea id="edit-question-text" name="questionText" required></textarea>
 
-        <label for="edit-option-a">Option A:</label><br>
-        <input type="text" id="edit-option-a" name="optionA" required><br>
+            <label for="edit-option-a">Option A:</label>
+            <input type="text" id="edit-option-a" name="optionA" required>
 
-        <label for="edit-option-b">Option B:</label><br>
-        <input type="text" id="edit-option-b" name="optionB" required><br>
+            <label for="edit-option-b">Option B:</label>
+            <input type="text" id="edit-option-b" name="optionB" required>
 
-        <label for="edit-option-c">Option C:</label><br>
-        <input type="text" id="edit-option-c" name="optionC" required><br>
+            <label for="edit-option-c">Option C:</label>
+            <input type="text" id="edit-option-c" name="optionC" required>
 
-        <label for="edit-option-d">Option D:</label><br>
-        <input type="text" id="edit-option-d" name="optionD" required><br>
+            <label for="edit-option-d">Option D:</label>
+            <input type="text" id="edit-option-d" name="optionD" required>
 
-        <label for="edit-correct-option">Correct Option:</label><br>
-        <select id="edit-correct-option" name="correctOption" required>
-            <option value="A">Option A</option>
-            <option value="B">Option B</option>
-            <option value="C">Option C</option>
-            <option value="D">Option D</option>
-        </select><br>
+            <label for="edit-correct-option">Correct Option:</label>
+            <select id="edit-correct-option" name="correctOption" required>
+                <option value="A">Option A</option>
+                <option value="B">Option B</option>
+                <option value="C">Option C</option>
+                <option value="D">Option D</option>
+            </select>
+            <button type="submit">Edit</button>
+        </form>
+    </div>
 
-        <button type="submit">Edit</button>
-    </form>
+    <div class="container">
+        <h3>Add Question</h3>
+        <form action="/admin/add" method="post">
+            <label for="add-question-text">Question Text:</label>
+            <textarea id="add-question-text" name="questionText" required></textarea>
 
+            <label for="add-option-a">Option A:</label>
+            <input type="text" id="add-option-a" name="optionA" required>
 
-    <h3>Add Question</h3>
-    <form action="/admin/add" method="post">
-        <label for="add-question-text">Question Text:</label><br>
-        <textarea id="add-question-text" name="questionText" required></textarea><br>
+            <label for="add-option-b">Option B:</label>
+            <input type="text" id="add-option-b" name="optionB" required>
 
-        <label for="add-option-a">Option A:</label><br>
-        <input type="text" id="add-option-a" name="optionA" required><br>
+            <label for="add-option-c">Option C:</label>
+            <input type="text" id="add-option-c" name="optionC" required>
 
-        <label for="add-option-b">Option B:</label><br>
-        <input type="text" id="add-option-b" name="optionB" required><br>
+            <label for="add-option-d">Option D:</label>
+            <input type="text" id="add-option-d" name="optionD" required>
 
-        <label for="add-option-c">Option C:</label><br>
-        <input type="text" id="add-option-c" name="optionC" required><br>
-
-        <label for="add-option-d">Option D:</label><br>
-        <input type="text" id="add-option-d" name="optionD" required><br>
-
-        <label for="add-correct-option">Correct Option:</label><br>
-        <select id="add-correct-option" name="correctOption" required>
-            <option value="A">Option A</option>
-            <option value="B">Option B</option>
-            <option value="C">Option C</option>
-            <option value="D">Option D</option>
-        </select><br>
-
-        <button type="submit">Add</button>
-    </form>
+            <label for="add-correct-option">Correct Option:</label>
+            <select id="add-correct-option" name="correctOption" required>
+                <option value="A">Option A</option>
+                <option value="B">Option B</option>
+                <option value="C">Option C</option>
+                <option value="D">Option D</option>
+            </select>
+            <button type="submit">Add</button>
+        </form>
+    </div>
 </body>
 
 </html>

@@ -101,7 +101,6 @@ app.post('/login', (req, res) => {
 app.post('/submit-quiz', isAuthenticated, (req, res) => {
     const userAnswers = req.body; // Assuming answers are submitted directly from the form inputs
 
-    console.log('Submitted answers:', userAnswers); // Add this line for debugging
 
     const userId = req.session.userId;
     const username = req.session.username;
@@ -119,16 +118,12 @@ app.post('/submit-quiz', isAuthenticated, (req, res) => {
             const correctOption = rows[i].correct_option;
             const userAnswer = userAnswers[`answer_${i}`]; // Assuming answers are submitted with keys like 'answer_<index>'
         
-            console.log('Question ID:', questionId);
-            console.log('Correct Option:', correctOption);
-            console.log('User Answer:', userAnswer);
         
             if (userAnswer === correctOption) {
                 score++;
             }
         }
 
-        console.log('Final score:', score); // Add this line for debugging
 
         // Insert the quiz result into the Scores table
         db.query('INSERT INTO Scores (user_id, username, score, date_taken) VALUES (?, ?, ?, NOW())', 
