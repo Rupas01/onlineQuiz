@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+</head>
+
+<body>
+    <h2>Admin Panel</h2>
+
+    <h3>Delete Question</h3>
+    <form action="/admin/delete" method="post">
+        <label for="delete-question-id">Question ID:</label><br>
+        <input type="text" id="delete-question-id" name="questionId" required><br>
+        <button type="submit">Delete</button>
+    </form>
+
+    <h3>Edit Question</h3>
+    <h3>Edit Question</h3>
+    <form action="/admin/edit" method="post">
+        <label for="edit-question-id">Question ID:</label><br>
+        <input type="text" id="edit-question-id" name="questionId" required><br>
+
+        <label for="edit-question-text">New Question Text:</label><br>
+        <textarea id="edit-question-text" name="questionText" required></textarea><br>
+
+        <label for="edit-option-a">Option A:</label><br>
+        <input type="text" id="edit-option-a" name="optionA" required><br>
+
+        <label for="edit-option-b">Option B:</label><br>
+        <input type="text" id="edit-option-b" name="optionB" required><br>
+
+        <label for="edit-option-c">Option C:</label><br>
+        <input type="text" id="edit-option-c" name="optionC" required><br>
+
+        <label for="edit-option-d">Option D:</label><br>
+        <input type="text" id="edit-option-d" name="optionD" required><br>
+
+        <label for="edit-correct-option">Correct Option:</label><br>
+        <select id="edit-correct-option" name="correctOption" required>
+            <option value="A">Option A</option>
+            <option value="B">Option B</option>
+            <option value="C">Option C</option>
+            <option value="D">Option D</option>
+        </select><br>
+
+        <button type="submit">Edit</button>
+    </form>
+
+
+    <h3>Add Question</h3>
+    <form action="/admin/add" method="post">
+        <label for="add-question-text">Question Text:</label><br>
+        <textarea id="add-question-text" name="questionText" required></textarea><br>
+
+        <label for="add-option-a">Option A:</label><br>
+        <input type="text" id="add-option-a" name="optionA" required><br>
+
+        <label for="add-option-b">Option B:</label><br>
+        <input type="text" id="add-option-b" name="optionB" required><br>
+
+        <label for="add-option-c">Option C:</label><br>
+        <input type="text" id="add-option-c" name="optionC" required><br>
+
+        <label for="add-option-d">Option D:</label><br>
+        <input type="text" id="add-option-d" name="optionD" required><br>
+
+        <label for="add-correct-option">Correct Option:</label><br>
+        <select id="add-correct-option" name="correctOption" required>
+            <option value="A">Option A</option>
+            <option value="B">Option B</option>
+            <option value="C">Option C</option>
+            <option value="D">Option D</option>
+        </select><br>
+
+        <button type="submit">Add</button>
+    </form>
+</body>
+
+</html>

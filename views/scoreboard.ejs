@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard</title>
+</head>
+<body>
+    <h1>Scoreboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Serial Number</th>
+                <th>Username</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% scores.forEach((score, index) => { %>
+                <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= score.username %></td>
+                    <td><%= score.score %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
