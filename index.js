@@ -25,6 +25,7 @@ app.use(express.static('public')); // Serve static files from the 'public' direc
 
 
 app.get('/', (req, res) => {
+    req.session.isAuthenticated = false;                                                                        // this is the updated line
     res.render('home');
 });
 
@@ -32,7 +33,7 @@ app.get('/', (req, res) => {
 
 app.get('/index', (req, res) => {
     if (!req.session.isAuthenticated) {
-        return res.redirect('/login'); // Redirect to login if not authenticated
+        return res.redirect('/'); // Redirect to login if not authenticated
     }
     res.render('index', { username: req.session.username }); // Passing username to index.ejs
 });
@@ -60,6 +61,7 @@ app.post('/register', (req, res) => {
             if (err) {
                 return res.status(500).send('Error registering user');
             }
+            req.session.isAuthenticated = false;                                                                        // this is the updated line
             res.redirect('/'); // Redirect to home page after successful registration
         });
     });
@@ -74,7 +76,16 @@ app.post('/register', (req, res) => {
 
 
 app.post('/login', (req, res) => {
+    req.session.isAuthenticated = false;                                                                        // this is the updated line
     const { username, password } = req.body;
+
+    // Check if the credentials are for the admin
+    if (username === 'admin' && password === 'admin') {
+        req.session.isAuthenticated = true;
+        req.session.userId = 'admin';
+        req.session.username = 'admin';
+        return res.redirect('/admin');
+    }
 
     // Check if username exists in the database
     db.query('SELECT * FROM Users WHERE username = ?', [username], (err, results) => {
@@ -93,14 +104,14 @@ app.post('/login', (req, res) => {
 
         // Set req.session.isAuthenticated to true to indicate that the user is authenticated
         req.session.isAuthenticated = true;
-
         req.session.userId = user.user_id;
         req.session.username = user.username;
 
         // Redirect to the quiz page
-        return res.redirect('index');
+        return res.redirect('/index');
     });
 });
+
 
 
 app.post('/submit-quiz', isAuthenticated, (req, res) => {
@@ -158,7 +169,7 @@ function isAuthenticated(req, res, next) {
         next();
     } else {
         // If not authenticated, redirect to the login page
-        res.redirect('/login');
+        res.redirect('/');
     }
 }
 
@@ -180,7 +191,7 @@ app.get('/quiz', isAuthenticated, (req, res) => {
 
 
 // Route for the scoreboard page
-app.get('/scoreboard', (req, res) => {
+app.get('/scoreboard',isAuthenticated, (req, res) => {
     // Query the Scores table to fetch scores in descending order
     db.query('SELECT username, score FROM Scores ORDER BY score DESC', (err, scores) => {
         if (err) {
@@ -198,7 +209,7 @@ app.get('/scoreboard', (req, res) => {
 
 
 // Route for the admin page
-app.get('/admin', (req, res) => {
+app.get('/admin',isAuthenticated, (req, res) => {
     res.render('admin');
 });
 
