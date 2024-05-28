@@ -47,4 +47,4 @@ The application uses a relational database to manage users, quiz questions, and 
 
 1. **Clone the repository**:
    ```sh
-   git clone https://github.com/Rupas01/onlinequiz.git
+   git clone https://github.com/Rupas01/onlineQuiz.git
