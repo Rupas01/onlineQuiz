@@ -7,7 +7,4 @@ const db = mysql.createConnection({
   database: 'quizgame'
 });
 
-// You don't need to call db.connect() explicitly
-
-// You can export the connection directly
 module.exports = db;

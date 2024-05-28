@@ -2,7 +2,8 @@
 
 ## Project Overview
 
-This project is an online quiz game developed using a Database Management System (DBMS). The application consists of four main pages: the Home page for user login and registration, the Quiz page where users participate in quizzes, the Scoreboard page to display user scores, and the Admin page for managing quiz questions.
+This project is an online quiz game developed using a Database Management System (DBMS). The application consists of four main pages: the Home page for user login and registration,
+the Index page which consists routes to the quiz page and scoreboard page, the Quiz page where users participate in quizzes, the Scoreboard page to display user scores, and the Admin page for managing quiz questions.
 
 ## Features
 
